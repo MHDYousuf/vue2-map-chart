@@ -3,6 +3,7 @@
     <Map
       @hoverCountry="onHoverCountry"
       @hoverLeaveCountry="onHoverLeaveCountry"
+      :key="keyChange"
     />
 
     <div
@@ -52,15 +53,9 @@ export default {
   name: "MapChart",
   components: { Map },
   watch: {
-    countryData: {
-      deep:true,
-      immediate:true,
-      handler(newVal){
-        if(newVal){
-          document.body.appendChild(this.$data.node);
-          this.renderMapCSS();
-        }
-      }
+    countryData() {
+      this.renderMapCSS();
+      this.keyChange = this.keyChange + 1
     },
   },
   props: {
@@ -99,6 +94,7 @@ export default {
       position: position,
       node: document.createElement("style"),
       chromaScale: chroma.scale([this.$props.lowColor, this.$props.highColor]),
+      keyChange:0
     };
   },
   methods: {
