@@ -3,6 +3,7 @@
     <Map
       @hoverCountry="onHoverCountry"
       @hoverLeaveCountry="onHoverLeaveCountry"
+      :key="keyChange"
     />
 
     <div
@@ -43,6 +44,8 @@ let legend = {
   percentage: null,
 };
 
+let keyChange =0;
+
 let position = {
   left: 0,
   top: 0,
@@ -54,7 +57,7 @@ export default {
   watch: {
     countryData() {
       this.renderMapCSS();
-      // this.keyChange = this.keyChange + 1
+      keyChange = keyChange + 1;
     },
   },
   props: {
@@ -93,7 +96,6 @@ export default {
       position: position,
       node: document.createElement("style"),
       chromaScale: chroma.scale([this.$props.lowColor, this.$props.highColor]),
-      keyChange:0
     };
   },
   methods: {
