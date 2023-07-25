@@ -19,7 +19,7 @@
         <slot name="legend_content">
           <!-- <span>{{ countryData[legend.code].count ?? 0 }}</span>
           <span>{{ countryData[legend.code].percentage ?? "" }}</span> -->
-          <span>{{ countryData[legend.code] ?? 0 }}</span>
+          <span>{{ countryData[legend.code] || 0 }}</span>
         </slot>
       </div>
     </div>
