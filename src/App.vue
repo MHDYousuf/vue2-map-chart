@@ -52,8 +52,12 @@ export default {
   name: "MapChart",
   components: { Map },
   watch: {
-    countryData() {
-      this.renderMapCSS();
+    countryData: {
+      deep:true,
+      immediate:true,
+      handler(){
+        this.renderMapCSS();
+      }
     },
   },
   props: {
