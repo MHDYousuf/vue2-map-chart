@@ -3,7 +3,6 @@
     <Map
       @hoverCountry="onHoverCountry"
       @hoverLeaveCountry="onHoverLeaveCountry"
-      :key="keyChange"
     />
 
     <div
@@ -55,7 +54,7 @@ export default {
   watch: {
     countryData() {
       this.renderMapCSS();
-      this.keyChange = this.keyChange + 1
+      // this.keyChange = this.keyChange + 1
     },
   },
   props: {
