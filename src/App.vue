@@ -17,11 +17,11 @@
       </div>
       <div class="vue-map-legend-content">
         <slot name="legend_content">
-          <span v-if="countryData[legend?.code]?.count !== undefined">{{
-            countryData[legend?.code]?.count || 0
+          <span>{{
+            countryData[legend.code].count || 0
           }}</span>
-          <span v-if="countryData[legend?.code]?.percentage !== undefined">{{
-            countryData[legend?.code]?.percentage || ""
+          <span>{{
+            countryData[legend.code].percentage || ""
           }}</span>
         </slot>
       </div>
