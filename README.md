@@ -1,4 +1,4 @@
-# Vue Map Chart
+# Vue2 Map Chart
 
 A Vue JS Component for displaying dynamic data on a world map.
 
@@ -13,9 +13,9 @@ A Vue JS Component for displaying dynamic data on a world map.
 
 ## Installation
 
-Install via npm using `npm install vue-map-chart`
+Install via npm using `npm install vue2-map-chart`
 ``` javascript
-import MapChart from 'vue-map-chart'
+import MapChart from 'vue2-map-chart'
 ```
 
 ## Usage
@@ -28,9 +28,18 @@ object formatted like so.
 
 ``` javascript
 {
-  "US": 100,
-  "CA": 120,
-  "GB": 400,
+  "US": {
+  count:100,
+  percentage:'any string here'
+  },
+  "CA": {
+  count:240,
+  percentage:'any string here'
+  },
+  "GB": {
+  count:180,
+  percentage:'any string here'
+  },
 }
 ```
 
@@ -50,6 +59,12 @@ import MapChart from 'vue-map-chart'
   defaultCountryFillColor="#dadada"
   />
 ```
+
+## Slots
+| Slots | Description | Optional |
+| --- | --- | --- |
+| legend_header | Header Slot of Legend | <span>Country Name will shown here</span> |
+| legend_content | Content Slot for Legend | <span> Country Code Count & Percentage shown here</span> |
 
 ## API
 
