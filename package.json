@@ -29,6 +29,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "scripts": {
     "lint": "eslint --ext .js,.vue src test",
     "test": "jest --config jest.conf.js",
