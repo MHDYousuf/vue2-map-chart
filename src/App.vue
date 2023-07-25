@@ -20,7 +20,10 @@
         <slot name="legend_content">
           <!-- <span>{{ countryData[legend.code].count ?? 0 }}</span>
           <span>{{ countryData[legend.code].percentage ?? "" }}</span> -->
-          <span v-if="countryData[legend.code]">{{ countryData[legend.code].count }} {{ countryData[legend.code].percentage }}</span>
+          <span v-if="countryData[legend.code]"
+            >{{ countryData[legend.code].count }}
+            {{ countryData[legend.code].percentage }}</span
+          >
           <span v-else>0</span>
         </slot>
       </div>
@@ -44,7 +47,6 @@ let legend = {
   percentage: null,
 };
 
-
 let position = {
   left: 0,
   top: 0,
@@ -53,19 +55,11 @@ let position = {
 export default {
   name: "MapChart",
   components: { Map },
-  watch: {
-    countryData: {
-      deep:true,
-      handler(){
-      this.renderMapCSS();
-      this.keyChange = this.keyChange + 1
-      }
+
+  computed: {
+    computedKey() {
+      return this.key + this.keyChange;
     },
-  },
-  computed:{
-    computedKey(){
-      return this.key + this.keyChange
-    }
   },
   props: {
     lowColor: {
@@ -96,9 +90,20 @@ export default {
       type: String,
       default: "#909090",
     },
-    key:{
-      default:0,
-    }
+    key: {
+      default: 0,
+    },
+  },
+  watch: {
+    countryData: {
+      deep: true,
+      immediate: true,
+      handler(newVal,oldVal) {
+        this.renderMapCSS();
+        console.log('countryData', newVal)
+        this.keyChange = this.keyChange + 1;
+      },
+    },
   },
   data() {
     return {
@@ -106,7 +111,7 @@ export default {
       position: position,
       node: document.createElement("style"),
       chromaScale: chroma.scale([this.$props.lowColor, this.$props.highColor]),
-      keyChange:0,
+      keyChange: 0,
     };
   },
   methods: {
@@ -131,13 +136,13 @@ export default {
         this.chromaScale
       );
       this.$data.node.innerHTML = getCombinedCssString(baseCss, dynamicMapCss);
-      this.keyChange = this.keyChange + 1
+      this.keyChange = this.keyChange + 1;
     },
   },
   mounted() {
     document.body.appendChild(this.$data.node);
     this.renderMapCSS();
-    this.keyChange = this.keyChange + 1
+    this.keyChange = this.keyChange + 1;
   },
 };
 </script>
