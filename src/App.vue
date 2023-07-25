@@ -58,6 +58,7 @@ export default {
       deep:true,
       handler(){
       this.renderMapCSS();
+      this.keyChange = this.keyChange + 1
       }
     },
   },

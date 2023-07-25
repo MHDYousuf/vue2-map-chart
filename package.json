@@ -37,7 +37,7 @@
     "test": "jest --config jest.conf.js",
     "test:watch": "npm run test -- --watch"
   },
-  "version": "1.0.15",
+  "version": "1.0.16",
   "directories": {
     "test": "test"
   },
