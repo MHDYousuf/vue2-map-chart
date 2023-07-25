@@ -19,7 +19,8 @@
         <slot name="legend_content">
           <!-- <span>{{ countryData[legend.code].count ?? 0 }}</span>
           <span>{{ countryData[legend.code].percentage ?? "" }}</span> -->
-          <span>{{ countryData[legend.code] || 0 }}</span>
+          <span v-if="countryData[legend.code]">{{ countryData[legend.code].count }} {{ countryData[legend.code].percentage }}</span>
+          <span v-else>0</span>
         </slot>
       </div>
     </div>
