@@ -2,7 +2,7 @@
 
 A Vue JS Component for displaying dynamic data on a world map.
 
-![preview](https://raw.githubusercontent.com/maguayo/vue-map-chart/master/preview/preview-world.png)
+![preview](https://res.cloudinary.com/dmcsrcy3h/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1690292966/Screenshot_2023-07-25_at_7.19.00_PM_y71bpq.jpg?_s=public-apps)
 
 
 ## Credits
