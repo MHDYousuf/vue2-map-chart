@@ -3,7 +3,7 @@
     <Map
       @hoverCountry="onHoverCountry"
       @hoverLeaveCountry="onHoverLeaveCountry"
-      :key="keyChange"
+      :key="computedKey"
     />
 
     <div
@@ -62,6 +62,11 @@ export default {
       }
     },
   },
+  computed:{
+    computedKey(){
+      return this.key + this.keyChange
+    }
+  },
   props: {
     lowColor: {
       type: String,
@@ -91,6 +96,9 @@ export default {
       type: String,
       default: "#909090",
     },
+    key:{
+      default:0,
+    }
   },
   data() {
     return {
