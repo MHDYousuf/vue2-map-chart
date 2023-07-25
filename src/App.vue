@@ -44,7 +44,6 @@ let legend = {
   percentage: null,
 };
 
-let keyChange =0;
 
 let position = {
   left: 0,
@@ -55,9 +54,11 @@ export default {
   name: "MapChart",
   components: { Map },
   watch: {
-    countryData() {
+    countryData: {
+      deep:true,
+      handler(){
       this.renderMapCSS();
-      keyChange = keyChange + 1;
+      }
     },
   },
   props: {
@@ -96,6 +97,7 @@ export default {
       position: position,
       node: document.createElement("style"),
       chromaScale: chroma.scale([this.$props.lowColor, this.$props.highColor]),
+      keyChange:0,
     };
   },
   methods: {
@@ -120,11 +122,13 @@ export default {
         this.chromaScale
       );
       this.$data.node.innerHTML = getCombinedCssString(baseCss, dynamicMapCss);
+      this.keyChange = this.keyChange + 1
     },
   },
   mounted() {
     document.body.appendChild(this.$data.node);
     this.renderMapCSS();
+    this.keyChange = this.keyChange + 1
   },
 };
 </script>
