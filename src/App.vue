@@ -17,11 +17,11 @@
       </div>
       <div class="vue-map-legend-content">
         <slot name="legend_content">
-          <span v-if="countryData[legend.code].count !== undefined">{{
-            countryData[legend.code].count || 0
+          <span v-if="countryData[legend?.code]?.count !== undefined">{{
+            countryData[legend?.code]?.count || 0
           }}</span>
-          <span v-if="countryData[legend.code].percentage !== undefined">{{
-            countryData[legend.code].percentage || ""
+          <span v-if="countryData[legend?.code]?.percentage !== undefined">{{
+            countryData[legend?.code]?.percentage || ""
           }}</span>
         </slot>
       </div>
@@ -40,7 +40,7 @@ import {
 
 let legend = {
   data: null,
-  code: null,
+  code: '',
   name: null,
   percentage: null,
 };
@@ -70,6 +70,14 @@ export default {
     countryData: {
       type: Object,
       required: true,
+      default(){
+        return {
+          'AE':{
+            count:0,
+          percentage:''
+          }
+        }
+      }
     },
     defaultCountryFillColor: {
       type: String,
