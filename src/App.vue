@@ -55,8 +55,11 @@ export default {
     countryData: {
       deep:true,
       immediate:true,
-      handler(){
-        this.renderMapCSS();
+      handler(newVal){
+        if(newVal){
+          document.body.appendChild(this.$data.node);
+          this.renderMapCSS();
+        }
       }
     },
   },
