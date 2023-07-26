@@ -100,7 +100,7 @@ export default {
       immediate: true,
       handler(newVal,oldVal) {
         this.renderMapCSS();
-        console.log('countryData', newVal)
+        // console.log('countryData', newVal)
         this.keyChange = this.keyChange + 1;
       },
     },
@@ -130,6 +130,7 @@ export default {
       this.$emit("hoverLeaveCountry", country);
     },
     renderMapCSS() {
+      document.body.appendChild(this.$data.node);
       const baseCss = getBaseCss(this.$props);
       const dynamicMapCss = getDynamicMapCss(
         this.$props.countryData,
