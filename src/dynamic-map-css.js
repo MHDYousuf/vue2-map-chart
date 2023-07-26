@@ -8,7 +8,7 @@ const getMaxAndMinCountryDataValues = (countryData) => {
   Object.keys(countryData).forEach((key) => {
     if (key === 'unknown') return;
 
-    const value = countryData[key].count ? countryData[key].count : countryData[key];
+    const value = countryData[key].count ? countryData[key].count : 0;
 
     if (value < min || min === undefined) min = value;
     if (value > max || max === undefined) max = value;
@@ -32,7 +32,7 @@ export const getDynamicMapCss = (countryData, chromaScale) => {
   Object.keys(countryData).forEach((key) => {
     if (key === 'unknown') return;
 
-    const value = countryData[key].count ? countryData[key].count : countryData[key];
+    const value = countryData[key].count ? countryData[key].count : 0;
     const scaleValue = colorScaleUnit * (value - min);
     const hex = chromaScale(scaleValue).hex();
 
