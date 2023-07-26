@@ -18,8 +18,6 @@
       </div>
       <div class="vue-map-legend-content">
         <slot name="legend_content">
-          <!-- <span>{{ countryData[legend.code].count ?? 0 }}</span>
-          <span>{{ countryData[legend.code].percentage ?? "" }}</span> -->
           <span v-if="countryData[legend.code]"
             >{{ countryData[legend.code].count }}
             {{ countryData[legend.code].percentage }}</span
@@ -101,7 +99,6 @@ export default {
       handler(newVal,oldVal) {
         this.renderMapCSS();
         // console.log('countryData', newVal)
-        this.keyChange = this.keyChange + 1;
       },
     },
   },
@@ -110,7 +107,7 @@ export default {
       legend: legend,
       position: position,
       node: document.createElement("style"),
-      chromaScale: chroma.scale([this.$props.lowColor, this.$props.highColor]),
+      chromaScale: chroma.scale([this.lowColor, this.highColor]),
       keyChange: 0,
     };
   },
@@ -130,20 +127,22 @@ export default {
       this.$emit("hoverLeaveCountry", country);
     },
     renderMapCSS() {
-      document.body.appendChild(this.$data.node);
+      document.body.appendChild(this.node);
       const baseCss = getBaseCss(this.$props);
       const dynamicMapCss = getDynamicMapCss(
-        this.$props.countryData,
+        this.countryData,
         this.chromaScale
       );
-      this.$data.node.innerHTML = getCombinedCssString(baseCss, dynamicMapCss);
+      this.node.innerHTML = getCombinedCssString(baseCss, dynamicMapCss);
       this.keyChange = this.keyChange + 1;
     },
   },
   mounted() {
-    document.body.appendChild(this.$data.node);
+    document.body.appendChild(this.node);
     this.renderMapCSS();
-    this.keyChange = this.keyChange + 1;
+  },
+  destroyed() {
+    this.renderMapCSS()
   },
 };
 </script>
